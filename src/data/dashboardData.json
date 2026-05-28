@@ -7,14 +7,54 @@
     "icon": "pipeline",
     "tabs": ["Live runs", "Schedules", "Failures"],
     "kpis": [
-      { "label": "Total pipelines", "value": "16", "delta": "0 with active runs", "status": "neutral" },
-      { "label": "Total runs", "value": "132", "delta": "86 successful", "status": "healthy" },
-      { "label": "Failed runs", "value": "36", "delta": "Out of 132 total", "status": "critical" },
-      { "label": "Success rate", "value": "72.7%", "delta": "Pipeline success", "status": "warning" },
-      { "label": "Avg duration", "value": "1.3m", "delta": "per pipeline run", "status": "neutral" },
-      { "label": "Active runs", "value": "0", "delta": "Currently running", "status": "neutral" },
-      { "label": "Node success rate", "value": "84.7%", "delta": "113 of 133 executions", "status": "warning" },
-      { "label": "Active nodes", "value": "0", "delta": "Currently processing", "status": "neutral" }
+      {
+        "label": "Total pipelines",
+        "value": "16",
+        "delta": "0 with active runs",
+        "status": "neutral"
+      },
+      {
+        "label": "Total runs",
+        "value": "132",
+        "delta": "86 successful",
+        "status": "healthy"
+      },
+      {
+        "label": "Failed runs",
+        "value": "36",
+        "delta": "Out of 132 total",
+        "status": "critical"
+      },
+      {
+        "label": "Success rate",
+        "value": "72.7%",
+        "delta": "Pipeline success",
+        "status": "warning"
+      },
+      {
+        "label": "Avg duration",
+        "value": "1.3m",
+        "delta": "per pipeline run",
+        "status": "neutral"
+      },
+      {
+        "label": "Active runs",
+        "value": "0",
+        "delta": "Currently running",
+        "status": "neutral"
+      },
+      {
+        "label": "Node success rate",
+        "value": "84.7%",
+        "delta": "113 of 133 executions",
+        "status": "warning"
+      },
+      {
+        "label": "Active nodes",
+        "value": "0",
+        "delta": "Currently processing",
+        "status": "neutral"
+      }
     ],
     "timeline": [
       { "label": "Ingestion", "value": 92, "status": "healthy" },
@@ -23,10 +63,34 @@
       { "label": "Publish", "value": 64, "status": "critical" }
     ],
     "workItems": [
-      { "name": "customer360-daily-load", "owner": "Growth Analytics", "status": "healthy", "metric": "42.8M rows", "updated": "2 min ago" },
-      { "name": "billing-ledger-transform", "owner": "Finance Data", "status": "warning", "metric": "SLA at risk", "updated": "8 min ago" },
-      { "name": "ad-events-stream", "owner": "Marketing Platform", "status": "critical", "metric": "3 retries", "updated": "11 min ago" },
-      { "name": "inventory-snapshot", "owner": "Supply Chain", "status": "healthy", "metric": "99.2% complete", "updated": "18 min ago" }
+      {
+        "name": "customer360-daily-load",
+        "owner": "Growth Analytics",
+        "status": "healthy",
+        "metric": "42.8M rows",
+        "updated": "2 min ago"
+      },
+      {
+        "name": "billing-ledger-transform",
+        "owner": "Finance Data",
+        "status": "warning",
+        "metric": "SLA at risk",
+        "updated": "8 min ago"
+      },
+      {
+        "name": "ad-events-stream",
+        "owner": "Marketing Platform",
+        "status": "critical",
+        "metric": "3 retries",
+        "updated": "11 min ago"
+      },
+      {
+        "name": "inventory-snapshot",
+        "owner": "Supply Chain",
+        "status": "healthy",
+        "metric": "99.2% complete",
+        "updated": "18 min ago"
+      }
     ],
     "focusTitle": "Pipeline Signals",
     "focusItems": [
@@ -38,24 +102,85 @@
       "trend": {
         "title": "Run Trends Over Time",
         "subtitle": "Last 30 days",
-        "labels": ["Oct 27", "Oct 30", "Nov 2", "Nov 5", "Nov 8", "Nov 11", "Nov 14", "Nov 17", "Nov 20", "Nov 23"],
+        "labels": [
+          "Oct 27",
+          "Oct 30",
+          "Nov 2",
+          "Nov 5",
+          "Nov 8",
+          "Nov 11",
+          "Nov 14",
+          "Nov 17",
+          "Nov 20",
+          "Nov 23"
+        ],
         "yMax": 75,
         "series": [
-          { "name": "Failed", "tone": "critical", "values": [0, 0, 0, 0, 0, 0, 0, 8, 3, 0] },
-          { "name": "Successful", "tone": "healthy", "values": [0, 0, 0, 0, 0, 0, 0, 26, 55, 8] }
+          {
+            "name": "Failed",
+            "tone": "critical",
+            "values": [0, 0, 0, 0, 0, 0, 0, 8, 3, 0]
+          },
+          {
+            "name": "Successful",
+            "tone": "healthy",
+            "values": [0, 0, 0, 0, 0, 0, 0, 26, 55, 8]
+          }
         ]
       },
       "performance": {
         "title": "Pipeline Performance",
         "subtitle": "Top 10",
         "categories": [
-          { "label": "UCC360", "segments": [{ "label": "Successful", "value": 38, "tone": "healthy" }, { "label": "Failed", "value": 6, "tone": "critical" }] },
-          { "label": "UCC +BA", "segments": [{ "label": "Successful", "value": 26, "tone": "healthy" }, { "label": "Failed", "value": 4, "tone": "critical" }] },
-          { "label": "Entity", "segments": [{ "label": "Successful", "value": 31, "tone": "healthy" }, { "label": "Failed", "value": 9, "tone": "critical" }] },
-          { "label": "UCC + Entity", "segments": [{ "label": "Successful", "value": 22, "tone": "healthy" }, { "label": "Failed", "value": 7, "tone": "critical" }] },
-          { "label": "iLien", "segments": [{ "label": "Successful", "value": 15, "tone": "healthy" }, { "label": "Failed", "value": 3, "tone": "critical" }] },
-          { "label": "UCC + iLien", "segments": [{ "label": "Successful", "value": 9, "tone": "healthy" }, { "label": "Failed", "value": 2, "tone": "critical" }] },
-          { "label": "UCC + BA + Entity", "segments": [{ "label": "Successful", "value": 18, "tone": "healthy" }, { "label": "Failed", "value": 5, "tone": "critical" }] }
+          {
+            "label": "UCC360",
+            "segments": [
+              { "label": "Successful", "value": 38, "tone": "healthy" },
+              { "label": "Failed", "value": 6, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "UCC +BA",
+            "segments": [
+              { "label": "Successful", "value": 26, "tone": "healthy" },
+              { "label": "Failed", "value": 4, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "Entity",
+            "segments": [
+              { "label": "Successful", "value": 31, "tone": "healthy" },
+              { "label": "Failed", "value": 9, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "UCC + Entity",
+            "segments": [
+              { "label": "Successful", "value": 22, "tone": "healthy" },
+              { "label": "Failed", "value": 7, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "iLien",
+            "segments": [
+              { "label": "Successful", "value": 15, "tone": "healthy" },
+              { "label": "Failed", "value": 3, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "UCC + iLien",
+            "segments": [
+              { "label": "Successful", "value": 9, "tone": "healthy" },
+              { "label": "Failed", "value": 2, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "UCC + BA + Entity",
+            "segments": [
+              { "label": "Successful", "value": 18, "tone": "healthy" },
+              { "label": "Failed", "value": 5, "tone": "critical" }
+            ]
+          }
         ]
       }
     }
@@ -68,13 +193,48 @@
     "icon": "quality",
     "tabs": ["Rules", "Anomalies", "Datasets"],
     "kpis": [
-      { "label": "Overall score", "value": "82.3%", "delta": "Weighted quality score", "status": "warning" },
-      { "label": "Accuracy", "value": "64.0%", "delta": "Below threshold", "status": "critical" },
-      { "label": "Completeness", "value": "92.5%", "delta": "Stable", "status": "healthy" },
-      { "label": "Conformity", "value": "56.7%", "delta": "Needs review", "status": "critical" },
-      { "label": "Consistency", "value": "97.5%", "delta": "Strong coverage", "status": "healthy" },
-      { "label": "Timeliness", "value": "0.0%", "delta": "No active checks", "status": "neutral" },
-      { "label": "Uniqueness", "value": "60.2%", "delta": "Duplicate risk", "status": "warning" }
+      {
+        "label": "Overall score",
+        "value": "82.3%",
+        "delta": "Weighted quality score",
+        "status": "warning"
+      },
+      {
+        "label": "Accuracy",
+        "value": "64.0%",
+        "delta": "Below threshold",
+        "status": "critical"
+      },
+      {
+        "label": "Completeness",
+        "value": "92.5%",
+        "delta": "Stable",
+        "status": "healthy"
+      },
+      {
+        "label": "Conformity",
+        "value": "56.7%",
+        "delta": "Needs review",
+        "status": "critical"
+      },
+      {
+        "label": "Consistency",
+        "value": "97.5%",
+        "delta": "Strong coverage",
+        "status": "healthy"
+      },
+      {
+        "label": "Timeliness",
+        "value": "0.0%",
+        "delta": "No active checks",
+        "status": "neutral"
+      },
+      {
+        "label": "Uniqueness",
+        "value": "60.2%",
+        "delta": "Duplicate risk",
+        "status": "warning"
+      }
     ],
     "timeline": [
       { "label": "Completeness", "value": 92, "status": "healthy" },
@@ -83,10 +243,34 @@
       { "label": "Freshness", "value": 56, "status": "critical" }
     ],
     "workItems": [
-      { "name": "orders_fact", "owner": "Commerce Data", "status": "healthy", "metric": "99.8% valid", "updated": "4 min ago" },
-      { "name": "user_identity_map", "owner": "Identity Platform", "status": "warning", "metric": "Duplicate keys", "updated": "15 min ago" },
-      { "name": "campaign_cost_daily", "owner": "Marketing Ops", "status": "critical", "metric": "Freshness breach", "updated": "27 min ago" },
-      { "name": "support_interactions", "owner": "CX Analytics", "status": "neutral", "metric": "Review pending", "updated": "42 min ago" }
+      {
+        "name": "orders_fact",
+        "owner": "Commerce Data",
+        "status": "healthy",
+        "metric": "99.8% valid",
+        "updated": "4 min ago"
+      },
+      {
+        "name": "user_identity_map",
+        "owner": "Identity Platform",
+        "status": "warning",
+        "metric": "Duplicate keys",
+        "updated": "15 min ago"
+      },
+      {
+        "name": "campaign_cost_daily",
+        "owner": "Marketing Ops",
+        "status": "critical",
+        "metric": "Freshness breach",
+        "updated": "27 min ago"
+      },
+      {
+        "name": "support_interactions",
+        "owner": "CX Analytics",
+        "status": "neutral",
+        "metric": "Review pending",
+        "updated": "42 min ago"
+      }
     ],
     "focusTitle": "Quality Signals",
     "focusItems": [
@@ -99,46 +283,205 @@
         "title": "Pass/fail quality rule by data product",
         "subtitle": "Failed vs passed checks",
         "categories": [
-          { "label": "UCC360", "segments": [{ "label": "Failed", "value": 22, "tone": "critical" }, { "label": "Passed", "value": 78, "tone": "healthy" }] },
-          { "label": "UCC +BA", "segments": [{ "label": "Failed", "value": 30, "tone": "critical" }, { "label": "Passed", "value": 70, "tone": "healthy" }] },
-          { "label": "Entity", "segments": [{ "label": "Failed", "value": 18, "tone": "critical" }, { "label": "Passed", "value": 82, "tone": "healthy" }] },
-          { "label": "UCC + Entity", "segments": [{ "label": "Failed", "value": 27, "tone": "critical" }, { "label": "Passed", "value": 73, "tone": "healthy" }] },
-          { "label": "iLien", "segments": [{ "label": "Failed", "value": 35, "tone": "critical" }, { "label": "Passed", "value": 65, "tone": "healthy" }] },
-          { "label": "UCC + iLien", "segments": [{ "label": "Failed", "value": 24, "tone": "critical" }, { "label": "Passed", "value": 76, "tone": "healthy" }] },
-          { "label": "UCC + BA + Entity", "segments": [{ "label": "Failed", "value": 29, "tone": "critical" }, { "label": "Passed", "value": 71, "tone": "healthy" }] }
+          {
+            "label": "UCC360",
+            "segments": [
+              { "label": "Failed", "value": 22, "tone": "critical" },
+              { "label": "Passed", "value": 78, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "UCC +BA",
+            "segments": [
+              { "label": "Failed", "value": 30, "tone": "critical" },
+              { "label": "Passed", "value": 70, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "Entity",
+            "segments": [
+              { "label": "Failed", "value": 18, "tone": "critical" },
+              { "label": "Passed", "value": 82, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "UCC + Entity",
+            "segments": [
+              { "label": "Failed", "value": 27, "tone": "critical" },
+              { "label": "Passed", "value": 73, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "iLien",
+            "segments": [
+              { "label": "Failed", "value": 35, "tone": "critical" },
+              { "label": "Passed", "value": 65, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "UCC + iLien",
+            "segments": [
+              { "label": "Failed", "value": 24, "tone": "critical" },
+              { "label": "Passed", "value": 76, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "UCC + BA + Entity",
+            "segments": [
+              { "label": "Failed", "value": 29, "tone": "critical" },
+              { "label": "Passed", "value": 71, "tone": "healthy" }
+            ]
+          }
+        ]
+      },
+      "trend": {
+        "title": "Overall Score Trend",
+        "subtitle": "Last 6 months",
+        "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        "yMax": 100,
+        "series": [
+          { "name": "Overall Score", "tone": "blue", "values": [78, 80, 82, 81, 83, 82] }
         ]
       },
       "matrix": {
         "title": "Data quality status by dimension",
         "subtitle": "Dimension x rule status",
-        "columns": ["Accuracy", "Completeness", "Conformity", "Consistency", "Timeliness", "Uniqueness"],
+        "columns": [
+          "Accuracy",
+          "Completeness",
+          "Conformity",
+          "Consistency",
+          "Timeliness",
+          "Uniqueness"
+        ],
         "rows": [
-          { "label": "Core Products", "cells": [{ "value": "82.0%", "tone": "healthy" }, { "value": "92.5%", "tone": "healthy" }, { "value": "56.7%", "tone": "critical" }, { "value": "97.5%", "tone": "healthy" }, { "value": "-", "tone": "neutral" }, { "value": "60.2%", "tone": "warning" }] },
-          { "label": "Identity", "cells": [{ "value": "64.0%", "tone": "critical" }, { "value": "90.0%", "tone": "healthy" }, { "value": "58.0%", "tone": "critical" }, { "value": "91.2%", "tone": "healthy" }, { "value": "-", "tone": "neutral" }, { "value": "64.0%", "tone": "warning" }] },
-          { "label": "Payments", "cells": [{ "value": "57.9%", "tone": "critical" }, { "value": "94.8%", "tone": "healthy" }, { "value": "-", "tone": "neutral" }, { "value": "98.3%", "tone": "healthy" }, { "value": "-", "tone": "neutral" }, { "value": "-", "tone": "neutral" }] },
-          { "label": "Finance", "cells": [{ "value": "-", "tone": "neutral" }, { "value": "91.9%", "tone": "healthy" }, { "value": "14.8%", "tone": "critical" }, { "value": "-", "tone": "neutral" }, { "value": "-", "tone": "neutral" }, { "value": "44.7%", "tone": "critical" }] },
-          { "label": "Support", "cells": [{ "value": "-", "tone": "neutral" }, { "value": "88.5%", "tone": "healthy" }, { "value": "-", "tone": "neutral" }, { "value": "92.0%", "tone": "healthy" }, { "value": "-", "tone": "neutral" }, { "value": "-", "tone": "neutral" }] }
+          {
+            "label": "Core Products",
+            "cells": [
+              { "value": "82.0%", "tone": "healthy" },
+              { "value": "92.5%", "tone": "healthy" },
+              { "value": "56.7%", "tone": "critical" },
+              { "value": "97.5%", "tone": "healthy" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "60.2%", "tone": "warning" }
+            ]
+          },
+          {
+            "label": "Identity",
+            "cells": [
+              { "value": "64.0%", "tone": "critical" },
+              { "value": "90.0%", "tone": "healthy" },
+              { "value": "58.0%", "tone": "critical" },
+              { "value": "91.2%", "tone": "healthy" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "64.0%", "tone": "warning" }
+            ]
+          },
+          {
+            "label": "Payments",
+            "cells": [
+              { "value": "57.9%", "tone": "critical" },
+              { "value": "94.8%", "tone": "healthy" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "98.3%", "tone": "healthy" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "-", "tone": "neutral" }
+            ]
+          },
+          {
+            "label": "Finance",
+            "cells": [
+              { "value": "-", "tone": "neutral" },
+              { "value": "91.9%", "tone": "healthy" },
+              { "value": "14.8%", "tone": "critical" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "44.7%", "tone": "critical" }
+            ]
+          },
+          {
+            "label": "Support",
+            "cells": [
+              { "value": "-", "tone": "neutral" },
+              { "value": "88.5%", "tone": "healthy" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "92.0%", "tone": "healthy" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "-", "tone": "neutral" }
+            ]
+          }
         ]
       },
       "hierarchy": {
-        "title": "Data quality rule hierarchy",
-        "subtitle": "Rules grouped by domain",
+        "title": "Quality Score per Rule Type",
+        "subtitle": "Scores by product",
         "categories": [
-          { "label": "Account", "bars": [{ "label": "Accuracy", "value": 82, "tone": "blue" }, { "label": "Completeness", "value": 93, "tone": "teal" }, { "label": "Uniqueness", "value": 60, "tone": "orange" }] },
-          { "label": "Order", "bars": [{ "label": "Accuracy", "value": 76, "tone": "blue" }, { "label": "Completeness", "value": 95, "tone": "teal" }, { "label": "Conformity", "value": 57, "tone": "critical" }] },
-          { "label": "Product", "bars": [{ "label": "Accuracy", "value": 64, "tone": "blue" }, { "label": "Completeness", "value": 91, "tone": "teal" }, { "label": "Consistency", "value": 98, "tone": "healthy" }] }
+          {
+            "label": "UCC360",
+            "bars": [
+              { "label": "Accuracy", "value": 82, "tone": "blue" },
+              { "label": "Completeness", "value": 78, "tone": "teal" },
+              { "label": "Uniqueness", "value": 60, "tone": "orange" }
+            ]
+          },
+          {
+            "label": "UCC +BA",
+            "bars": [
+              { "label": "Accuracy", "value": 76, "tone": "blue" },
+              { "label": "Completeness", "value": 85, "tone": "teal" },
+              { "label": "Conformity", "value": 57, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "Entity",
+            "bars": [
+              { "label": "Accuracy", "value": 64, "tone": "blue" },
+              { "label": "Completeness", "value": 91, "tone": "teal" },
+              { "label": "Consistency", "value": 88, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "UCC + Entity",
+            "bars": [
+              { "label": "Accuracy", "value": 68, "tone": "blue" },
+              { "label": "Completeness", "value": 83, "tone": "teal" },
+              { "label": "Consistency", "value": 79, "tone": "healthy" }
+            ]
+          },
+          {
+            "label": "iLien",
+            "bars": [
+              { "label": "Accuracy", "value": 58, "tone": "blue" },
+              { "label": "Completeness", "value": 72, "tone": "teal" },
+              { "label": "Uniqueness", "value": 55, "tone": "orange" }
+            ]
+          },
+          {
+            "label": "UCC + iLien",
+            "bars": [
+              { "label": "Accuracy", "value": 61, "tone": "blue" },
+              { "label": "Completeness", "value": 74, "tone": "teal" },
+              { "label": "Conformity", "value": 62, "tone": "critical" }
+            ]
+          },
+          {
+            "label": "UCC + BA + Entity",
+            "bars": [
+              { "label": "Accuracy", "value": 69, "tone": "blue" },
+              { "label": "Completeness", "value": 80, "tone": "teal" },
+              { "label": "Consistency", "value": 75, "tone": "healthy" }
+            ]
+          }
         ]
       },
       "dimensionBars": {
         "title": "Count of data assets by dimension, rule type",
         "subtitle": "Rule coverage by product",
         "categories": [
-          { "label": "Accuracy", "bars": [{ "label": "Core", "value": 6, "tone": "blue" }, { "label": "Ref", "value": 4, "tone": "orange" }] },
-          { "label": "Completeness", "bars": [{ "label": "Core", "value": 20, "tone": "purple" }, { "label": "Ref", "value": 1, "tone": "orange" }] },
-          { "label": "Conformity", "bars": [{ "label": "Core", "value": 6, "tone": "blue" }, { "label": "Ref", "value": 5, "tone": "orange" }] },
-          { "label": "Consistency", "bars": [{ "label": "Core", "value": 13, "tone": "healthy" }, { "label": "Ref", "value": 2, "tone": "orange" }] },
-          { "label": "Timeliness", "bars": [{ "label": "Core", "value": 3, "tone": "teal" }] },
-          { "label": "Uniqueness", "bars": [{ "label": "Core", "value": 18, "tone": "purple" }, { "label": "Ref", "value": 9, "tone": "orange" }] }
+          { "label": "Accuracy", "bars": [{ "label": "UCC360", "value": 82, "tone": "blue" }, { "label": "UCC +BA", "value": 76, "tone": "blue" }, { "label": "Entity", "value": 64, "tone": "blue" }] },
+          { "label": "Completeness", "bars": [{ "label": "UCC360", "value": 78, "tone": "teal" }, { "label": "UCC +BA", "value": 85, "tone": "teal" }, { "label": "Entity", "value": 91, "tone": "teal" }] },
+          { "label": "Conformity", "bars": [{ "label": "UCC360", "value": 56, "tone": "critical" }, { "label": "UCC +BA", "value": 57, "tone": "critical" }, { "label": "Entity", "value": 58, "tone": "critical" }] },
+          { "label": "Consistency", "bars": [{ "label": "UCC360", "value": 97, "tone": "healthy" }, { "label": "UCC +BA", "value": 91, "tone": "healthy" }, { "label": "Entity", "value": 88, "tone": "healthy" }] }
         ]
       }
     }
@@ -151,10 +494,30 @@
     "icon": "metadata",
     "tabs": ["Catalog", "Lineage", "Policies"],
     "kpis": [
-      { "label": "Catalog coverage", "value": "91%", "delta": "+4% this month", "status": "healthy" },
-      { "label": "Lineage mapped", "value": "8.2k", "delta": "312 new edges", "status": "healthy" },
-      { "label": "Owner gaps", "value": "23", "delta": "Needs stewardship", "status": "warning" },
-      { "label": "Policy alerts", "value": "4", "delta": "1 high severity", "status": "critical" }
+      {
+        "label": "Catalog coverage",
+        "value": "91%",
+        "delta": "+4% this month",
+        "status": "healthy"
+      },
+      {
+        "label": "Lineage mapped",
+        "value": "8.2k",
+        "delta": "312 new edges",
+        "status": "healthy"
+      },
+      {
+        "label": "Owner gaps",
+        "value": "23",
+        "delta": "Needs stewardship",
+        "status": "warning"
+      },
+      {
+        "label": "Policy alerts",
+        "value": "4",
+        "delta": "1 high severity",
+        "status": "critical"
+      }
     ],
     "timeline": [
       { "label": "Coverage", "value": 91, "status": "healthy" },
@@ -163,10 +526,34 @@
       { "label": "Policy tags", "value": 69, "status": "warning" }
     ],
     "workItems": [
-      { "name": "customer_profile_gold", "owner": "Data Products", "status": "healthy", "metric": "17 downstream assets", "updated": "7 min ago" },
-      { "name": "raw_payment_events", "owner": "Payments", "status": "critical", "metric": "Missing PII tag", "updated": "20 min ago" },
-      { "name": "forecast_feature_store", "owner": "ML Platform", "status": "warning", "metric": "Owner review", "updated": "34 min ago" },
-      { "name": "supplier_master", "owner": "Procurement", "status": "neutral", "metric": "Lineage queued", "updated": "1 hr ago" }
+      {
+        "name": "customer_profile_gold",
+        "owner": "Data Products",
+        "status": "healthy",
+        "metric": "17 downstream assets",
+        "updated": "7 min ago"
+      },
+      {
+        "name": "raw_payment_events",
+        "owner": "Payments",
+        "status": "critical",
+        "metric": "Missing PII tag",
+        "updated": "20 min ago"
+      },
+      {
+        "name": "forecast_feature_store",
+        "owner": "ML Platform",
+        "status": "warning",
+        "metric": "Owner review",
+        "updated": "34 min ago"
+      },
+      {
+        "name": "supplier_master",
+        "owner": "Procurement",
+        "status": "neutral",
+        "metric": "Lineage queued",
+        "updated": "1 hr ago"
+      }
     ],
     "focusTitle": "Governance Signals",
     "focusItems": [
@@ -180,15 +567,69 @@
         "subtitle": "Upstream sources to lakehouse table",
         "description": "Business glossary and classification metadata for the selected Lakehouse table is refreshed every 15 minutes.",
         "nodes": [
-          { "id": "src1", "label": "src_uc_filing_uk_q4", "level": 0, "row": 0, "tone": "blue" },
-          { "id": "src2", "label": "src_uc_filing_debtor", "level": 0, "row": 1, "tone": "blue" },
-          { "id": "src3", "label": "src_uc_filing", "level": 0, "row": 2, "tone": "blue" },
-          { "id": "src4", "label": "src_uc_filing_dl", "level": 0, "row": 3, "tone": "blue" },
-          { "id": "src5", "label": "src_uc_filing_cpi", "level": 0, "row": 5, "tone": "blue" },
-          { "id": "cur1", "label": "filing_debtor_accounts", "level": 1, "row": 2, "tone": "teal" },
-          { "id": "cur2", "label": "filing_details_amended", "level": 1, "row": 3, "tone": "teal" },
-          { "id": "cur3", "label": "filing_dt_completed", "level": 1, "row": 5, "tone": "teal" },
-          { "id": "target", "label": "ucc_master_filings_all", "level": 2, "row": 3, "tone": "healthy" }
+          {
+            "id": "src1",
+            "label": "src_uc_filing_uk_q4",
+            "level": 0,
+            "row": 0,
+            "tone": "blue"
+          },
+          {
+            "id": "src2",
+            "label": "src_uc_filing_debtor",
+            "level": 0,
+            "row": 1,
+            "tone": "blue"
+          },
+          {
+            "id": "src3",
+            "label": "src_uc_filing",
+            "level": 0,
+            "row": 2,
+            "tone": "blue"
+          },
+          {
+            "id": "src4",
+            "label": "src_uc_filing_dl",
+            "level": 0,
+            "row": 3,
+            "tone": "blue"
+          },
+          {
+            "id": "src5",
+            "label": "src_uc_filing_cpi",
+            "level": 0,
+            "row": 5,
+            "tone": "blue"
+          },
+          {
+            "id": "cur1",
+            "label": "filing_debtor_accounts",
+            "level": 1,
+            "row": 2,
+            "tone": "teal"
+          },
+          {
+            "id": "cur2",
+            "label": "filing_details_amended",
+            "level": 1,
+            "row": 3,
+            "tone": "teal"
+          },
+          {
+            "id": "cur3",
+            "label": "filing_dt_completed",
+            "level": 1,
+            "row": 5,
+            "tone": "teal"
+          },
+          {
+            "id": "target",
+            "label": "ucc_master_filings_all",
+            "level": 2,
+            "row": 3,
+            "tone": "healthy"
+          }
         ],
         "edges": [
           { "from": "src1", "to": "cur1" },
@@ -206,7 +647,14 @@
           { "label": "Data steward", "value": "Core Platform" },
           { "label": "Published", "value": "Yes" }
         ],
-        "classifications": ["Confidential", "PII", "Business critical", "Regulatory", "Finance", "Customer reference"]
+        "classifications": [
+          "Confidential",
+          "PII",
+          "Business critical",
+          "Regulatory",
+          "Finance",
+          "Customer reference"
+        ]
       }
     }
   },
@@ -218,10 +666,30 @@
     "icon": "api",
     "tabs": ["Endpoints", "Consumers", "Errors"],
     "kpis": [
-      { "label": "Success rate", "value": "65.2%", "delta": "Last check window", "status": "warning" },
-      { "label": "Services", "value": "24", "delta": "Across products", "status": "healthy" },
-      { "label": "Uptime", "value": "98.1%", "delta": "SLO watch", "status": "healthy" },
-      { "label": "Throughput", "value": "103.86", "delta": "req/sec average", "status": "neutral" }
+      {
+        "label": "Success rate",
+        "value": "65.2%",
+        "delta": "Last check window",
+        "status": "warning"
+      },
+      {
+        "label": "Services",
+        "value": "24",
+        "delta": "Across products",
+        "status": "healthy"
+      },
+      {
+        "label": "Uptime",
+        "value": "98.1%",
+        "delta": "SLO watch",
+        "status": "healthy"
+      },
+      {
+        "label": "Throughput",
+        "value": "103.86",
+        "delta": "req/sec average",
+        "status": "neutral"
+      }
     ],
     "timeline": [
       { "label": "Auth", "value": 96, "status": "healthy" },
@@ -230,10 +698,34 @@
       { "label": "Export", "value": 58, "status": "critical" }
     ],
     "workItems": [
-      { "name": "GET /v2/customers/{id}", "owner": "Experience API", "status": "healthy", "metric": "112ms p95", "updated": "1 min ago" },
-      { "name": "POST /v1/events/batch", "owner": "Streaming Gateway", "status": "warning", "metric": "Elevated latency", "updated": "6 min ago" },
-      { "name": "GET /v1/exports/status", "owner": "Data Exchange", "status": "critical", "metric": "2.7% 5xx", "updated": "13 min ago" },
-      { "name": "PATCH /v2/accounts", "owner": "Account Platform", "status": "neutral", "metric": "Deploy watch", "updated": "31 min ago" }
+      {
+        "name": "GET /v2/customers/{id}",
+        "owner": "Experience API",
+        "status": "healthy",
+        "metric": "112ms p95",
+        "updated": "1 min ago"
+      },
+      {
+        "name": "POST /v1/events/batch",
+        "owner": "Streaming Gateway",
+        "status": "warning",
+        "metric": "Elevated latency",
+        "updated": "6 min ago"
+      },
+      {
+        "name": "GET /v1/exports/status",
+        "owner": "Data Exchange",
+        "status": "critical",
+        "metric": "2.7% 5xx",
+        "updated": "13 min ago"
+      },
+      {
+        "name": "PATCH /v2/accounts",
+        "owner": "Account Platform",
+        "status": "neutral",
+        "metric": "Deploy watch",
+        "updated": "31 min ago"
+      }
     ],
     "focusTitle": "API Signals",
     "focusItems": [
@@ -246,23 +738,88 @@
         "title": "Request volume by service",
         "subtitle": "Grouped status code classes",
         "categories": [
-          { "label": "Auth", "bars": [{ "label": "2xx", "value": 28, "tone": "blue" }, { "label": "4xx", "value": 12, "tone": "orange" }, { "label": "5xx", "value": 3, "tone": "critical" }, { "label": "Cache", "value": 20, "tone": "teal" }] },
-          { "label": "Profile", "bars": [{ "label": "2xx", "value": 24, "tone": "blue" }, { "label": "4xx", "value": 9, "tone": "orange" }, { "label": "5xx", "value": 5, "tone": "critical" }, { "label": "Cache", "value": 17, "tone": "teal" }] },
-          { "label": "Orders", "bars": [{ "label": "2xx", "value": 31, "tone": "blue" }, { "label": "4xx", "value": 8, "tone": "orange" }, { "label": "5xx", "value": 4, "tone": "critical" }, { "label": "Cache", "value": 15, "tone": "teal" }] },
-          { "label": "Export", "bars": [{ "label": "2xx", "value": 18, "tone": "blue" }, { "label": "4xx", "value": 7, "tone": "orange" }, { "label": "5xx", "value": 9, "tone": "critical" }, { "label": "Cache", "value": 11, "tone": "teal" }] },
-          { "label": "Billing", "bars": [{ "label": "2xx", "value": 26, "tone": "blue" }, { "label": "4xx", "value": 10, "tone": "orange" }, { "label": "5xx", "value": 2, "tone": "critical" }, { "label": "Cache", "value": 16, "tone": "teal" }] }
+          {
+            "label": "Auth",
+            "bars": [
+              { "label": "2xx", "value": 28, "tone": "blue" },
+              { "label": "4xx", "value": 12, "tone": "orange" },
+              { "label": "5xx", "value": 3, "tone": "critical" },
+              { "label": "Cache", "value": 20, "tone": "teal" }
+            ]
+          },
+          {
+            "label": "Profile",
+            "bars": [
+              { "label": "2xx", "value": 24, "tone": "blue" },
+              { "label": "4xx", "value": 9, "tone": "orange" },
+              { "label": "5xx", "value": 5, "tone": "critical" },
+              { "label": "Cache", "value": 17, "tone": "teal" }
+            ]
+          },
+          {
+            "label": "Orders",
+            "bars": [
+              { "label": "2xx", "value": 31, "tone": "blue" },
+              { "label": "4xx", "value": 8, "tone": "orange" },
+              { "label": "5xx", "value": 4, "tone": "critical" },
+              { "label": "Cache", "value": 15, "tone": "teal" }
+            ]
+          },
+          {
+            "label": "Export",
+            "bars": [
+              { "label": "2xx", "value": 18, "tone": "blue" },
+              { "label": "4xx", "value": 7, "tone": "orange" },
+              { "label": "5xx", "value": 9, "tone": "critical" },
+              { "label": "Cache", "value": 11, "tone": "teal" }
+            ]
+          },
+          {
+            "label": "Billing",
+            "bars": [
+              { "label": "2xx", "value": 26, "tone": "blue" },
+              { "label": "4xx", "value": 10, "tone": "orange" },
+              { "label": "5xx", "value": 2, "tone": "critical" },
+              { "label": "Cache", "value": 16, "tone": "teal" }
+            ]
+          }
         ]
       },
       "latency": {
         "title": "Response time trend",
         "subtitle": "P50, P95, P99 over time",
-        "labels": ["Jun 1", "Jun 4", "Jun 8", "Jun 12", "Jun 16", "Jun 20", "Jun 24", "Jun 28"],
+        "labels": [
+          "Jun 1",
+          "Jun 4",
+          "Jun 8",
+          "Jun 12",
+          "Jun 16",
+          "Jun 20",
+          "Jun 24",
+          "Jun 28"
+        ],
         "yMax": 900,
         "series": [
-          { "name": "P50", "tone": "healthy", "values": [105, 120, 98, 130, 125, 110, 140, 132] },
-          { "name": "P95", "tone": "blue", "values": [285, 330, 260, 375, 310, 340, 355, 284] },
-          { "name": "P99", "tone": "orange", "values": [590, 640, 580, 690, 610, 670, 705, 640] },
-          { "name": "Downstream", "tone": "purple", "values": [410, 385, 450, 420, 480, 445, 460, 500] }
+          {
+            "name": "P50",
+            "tone": "healthy",
+            "values": [105, 120, 98, 130, 125, 110, 140, 132]
+          },
+          {
+            "name": "P95",
+            "tone": "blue",
+            "values": [285, 330, 260, 375, 310, 340, 355, 284]
+          },
+          {
+            "name": "P99",
+            "tone": "orange",
+            "values": [590, 640, 580, 690, 610, 670, 705, 640]
+          },
+          {
+            "name": "Downstream",
+            "tone": "purple",
+            "values": [410, 385, 450, 420, 480, 445, 460, 500]
+          }
         ]
       }
     }

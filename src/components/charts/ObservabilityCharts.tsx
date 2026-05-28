@@ -21,7 +21,7 @@ export function ObservabilityCharts({ activeTab, page, totalHealth }: Observabil
     return (
       <section className="wireframe-grid pipeline-grid">
         {page.visuals.trend && <TrendLineChart config={page.visuals.trend} />}
-        {page.visuals.performance && <StackedColumnChart config={page.visuals.performance} />}
+        {page.visuals.performance && <PerformanceGroupedChart config={page.visuals.performance} />}
       </section>
     )
   }
@@ -30,6 +30,7 @@ export function ObservabilityCharts({ activeTab, page, totalHealth }: Observabil
     return (
       <section className="wireframe-grid quality-grid">
         {page.visuals.stackedStatus && <HorizontalStackedBars config={page.visuals.stackedStatus} />}
+        {page.visuals.trend && <TrendLineChart config={page.visuals.trend} />}
         {page.visuals.matrix && <QualityMatrix config={page.visuals.matrix} />}
         {page.visuals.hierarchy && <GroupedBars config={page.visuals.hierarchy} compact />}
         {page.visuals.dimensionBars && <GroupedBars config={page.visuals.dimensionBars} />}
@@ -80,7 +81,8 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
   return (
     <Card className="chart-card">
       <ChartHeader title={config.title} subtitle={config.subtitle} />
-      <svg className="line-chart-svg" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={config.title}>
+      <div className="trend-row">
+        <svg className="line-chart-svg" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={config.title}>
         {[0, 0.25, 0.5, 0.75, 1].map((step) => {
           const y = padding.top + plotHeight - step * plotHeight
           return (
@@ -115,10 +117,19 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
             </g>
           )
         })}
-      </svg>
-      <Legend items={config.series.map((series) => ({ label: series.name, tone: series.tone }))} />
+        </svg>
+        <div style={{ width: 220 }}>
+          <Legend items={config.series.map((series) => ({ label: series.name, tone: series.tone }))} />
+        </div>
+      </div>
     </Card>
   )
+}
+
+function PerformanceGroupedChart({ config }: { config: StackedBarConfig }) {
+  // adapt stacked segments into grouped bars for side-by-side success/fail per product
+  const grouped = { categories: config.categories.map((c) => ({ label: c.label, bars: c.segments.map((s) => ({ label: s.label, value: s.value, tone: s.tone })) })) }
+  return <GroupedBars config={grouped as any} />
 }
 
 function StackedColumnChart({ config }: { config: StackedBarConfig }) {

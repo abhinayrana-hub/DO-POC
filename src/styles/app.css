@@ -1274,6 +1274,22 @@ tbody tr:last-child td {
   background: var(--color-success);
 }
 
+/* Inline trend layout: svg + legend side-by-side */
+.trend-row {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+.trend-row .line-chart-svg {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.trend-row .chart-legend {
+  margin-top: 0;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
 .status-dot.warning {
   background: var(--color-warning);
 }
