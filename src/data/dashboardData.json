@@ -43,18 +43,7 @@
         "delta": "Currently running",
         "status": "neutral"
       },
-      {
-        "label": "Node success rate",
-        "value": "84.7%",
-        "delta": "113 of 133 executions",
-        "status": "warning"
-      },
-      {
-        "label": "Active nodes",
-        "value": "0",
-        "delta": "Currently processing",
-        "status": "neutral"
-      }
+      
     ],
     "timeline": [
       { "label": "Ingestion", "value": 92, "status": "healthy" },
@@ -100,7 +89,7 @@
     ],
     "visuals": {
       "trend": {
-        "title": "Total JOB Run Over Time",
+        "title": "Total JOB Runs Over Time",
         "subtitle": "Last 30 days",
         "labels": [
           "Oct 27",
