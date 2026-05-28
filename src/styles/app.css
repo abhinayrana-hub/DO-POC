@@ -451,7 +451,7 @@
 /* Make grouped/bar chart bodies use the same inner plot area height as Recharts area chart */
 .pipeline-grid .chart-card .grouped-bar-chart {
   min-height: 320px;
-  padding-top: 0;
+  padding-top: 8px; /* match AreaChart margin.top */
   align-items: end;
 }
 .pipeline-grid .chart-card .grouped-bar-chart {
@@ -466,7 +466,7 @@
   height: 320px;
 }
 .pipeline-grid .chart-card .grouped-bar-chart .grouped-bars {
-  height: 280px;
+  height: 276px; /* chart-plot (320) - top(8) - bottom(36) = 276 */
   justify-content: space-between;
 }
 
@@ -701,7 +701,7 @@
   display: grid;
   flex: 1 1 0;
   min-width: 0;
-  height: 280px;
+  height: 320px;
   align-items: end;
   gap: 8px;
 }
