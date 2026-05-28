@@ -454,6 +454,11 @@
   padding-top: 18px;
   align-items: end;
 }
+.pipeline-grid .chart-card .grouped-bar-chart {
+  /* align inner plot start with area chart's left gutter */
+  padding-left: 42px;
+  padding-right: 20px;
+}
 
 /* Shared inner plot height used by Recharts and grouped bars for parity */
 .chart-plot {
@@ -462,6 +467,7 @@
 }
 .pipeline-grid .chart-card .grouped-bar-chart .grouped-bars {
   height: 260px;
+  justify-content: space-between;
 }
 
 /* Ensure chart-card header does not consume flexible space and chart body fills remaining area */
