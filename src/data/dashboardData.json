@@ -49,16 +49,13 @@
         "title": "Pipeline Performance",
         "subtitle": "Top 10",
         "categories": [
-          { "label": "cust360", "segments": [{ "label": "Successful", "value": 25, "tone": "healthy" }, { "label": "Failed", "value": 6, "tone": "critical" }] },
-          { "label": "billing", "segments": [{ "label": "Successful", "value": 7, "tone": "healthy" }, { "label": "Failed", "value": 9, "tone": "critical" }] },
-          { "label": "ad events", "segments": [{ "label": "Successful", "value": 2, "tone": "healthy" }, { "label": "Failed", "value": 13, "tone": "critical" }] },
-          { "label": "orders", "segments": [{ "label": "Successful", "value": 13, "tone": "healthy" }, { "label": "Failed", "value": 0, "tone": "critical" }] },
-          { "label": "inventory", "segments": [{ "label": "Successful", "value": 11, "tone": "healthy" }, { "label": "Failed", "value": 1, "tone": "critical" }] },
-          { "label": "payments", "segments": [{ "label": "Successful", "value": 7, "tone": "healthy" }, { "label": "Failed", "value": 1, "tone": "critical" }] },
-          { "label": "support", "segments": [{ "label": "Successful", "value": 5, "tone": "healthy" }, { "label": "Failed", "value": 1, "tone": "critical" }] },
-          { "label": "forecast", "segments": [{ "label": "Successful", "value": 4, "tone": "healthy" }, { "label": "Failed", "value": 1, "tone": "critical" }] },
-          { "label": "master", "segments": [{ "label": "Successful", "value": 4, "tone": "healthy" }, { "label": "Failed", "value": 0, "tone": "critical" }] },
-          { "label": "audit", "segments": [{ "label": "Successful", "value": 3, "tone": "healthy" }, { "label": "Failed", "value": 0, "tone": "critical" }] }
+          { "label": "UCC360", "segments": [{ "label": "Successful", "value": 38, "tone": "healthy" }, { "label": "Failed", "value": 6, "tone": "critical" }] },
+          { "label": "UCC +BA", "segments": [{ "label": "Successful", "value": 26, "tone": "healthy" }, { "label": "Failed", "value": 4, "tone": "critical" }] },
+          { "label": "Entity", "segments": [{ "label": "Successful", "value": 31, "tone": "healthy" }, { "label": "Failed", "value": 9, "tone": "critical" }] },
+          { "label": "UCC + Entity", "segments": [{ "label": "Successful", "value": 22, "tone": "healthy" }, { "label": "Failed", "value": 7, "tone": "critical" }] },
+          { "label": "iLien", "segments": [{ "label": "Successful", "value": 15, "tone": "healthy" }, { "label": "Failed", "value": 3, "tone": "critical" }] },
+          { "label": "UCC + iLien", "segments": [{ "label": "Successful", "value": 9, "tone": "healthy" }, { "label": "Failed", "value": 2, "tone": "critical" }] },
+          { "label": "UCC + BA + Entity", "segments": [{ "label": "Successful", "value": 18, "tone": "healthy" }, { "label": "Failed", "value": 5, "tone": "critical" }] }
         ]
       }
     }
@@ -102,12 +99,13 @@
         "title": "Pass/fail quality rule by data product",
         "subtitle": "Failed vs passed checks",
         "categories": [
-          { "label": "Account", "segments": [{ "label": "Failed", "value": 61, "tone": "critical" }, { "label": "Passed", "value": 39, "tone": "healthy" }] },
-          { "label": "Campaign", "segments": [{ "label": "Failed", "value": 41, "tone": "critical" }, { "label": "Passed", "value": 59, "tone": "healthy" }] },
-          { "label": "Product", "segments": [{ "label": "Failed", "value": 63, "tone": "critical" }, { "label": "Passed", "value": 37, "tone": "healthy" }] },
-          { "label": "Order", "segments": [{ "label": "Failed", "value": 37, "tone": "critical" }, { "label": "Passed", "value": 63, "tone": "healthy" }] },
-          { "label": "Identity", "segments": [{ "label": "Failed", "value": 52, "tone": "critical" }, { "label": "Passed", "value": 48, "tone": "healthy" }] },
-          { "label": "Site", "segments": [{ "label": "Failed", "value": 47, "tone": "critical" }, { "label": "Passed", "value": 53, "tone": "healthy" }] }
+          { "label": "UCC360", "segments": [{ "label": "Failed", "value": 22, "tone": "critical" }, { "label": "Passed", "value": 78, "tone": "healthy" }] },
+          { "label": "UCC +BA", "segments": [{ "label": "Failed", "value": 30, "tone": "critical" }, { "label": "Passed", "value": 70, "tone": "healthy" }] },
+          { "label": "Entity", "segments": [{ "label": "Failed", "value": 18, "tone": "critical" }, { "label": "Passed", "value": 82, "tone": "healthy" }] },
+          { "label": "UCC + Entity", "segments": [{ "label": "Failed", "value": 27, "tone": "critical" }, { "label": "Passed", "value": 73, "tone": "healthy" }] },
+          { "label": "iLien", "segments": [{ "label": "Failed", "value": 35, "tone": "critical" }, { "label": "Passed", "value": 65, "tone": "healthy" }] },
+          { "label": "UCC + iLien", "segments": [{ "label": "Failed", "value": 24, "tone": "critical" }, { "label": "Passed", "value": 76, "tone": "healthy" }] },
+          { "label": "UCC + BA + Entity", "segments": [{ "label": "Failed", "value": 29, "tone": "critical" }, { "label": "Passed", "value": 71, "tone": "healthy" }] }
         ]
       },
       "matrix": {
