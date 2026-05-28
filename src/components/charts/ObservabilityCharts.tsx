@@ -97,6 +97,24 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
     return [x, y];
   };
 
+  function buildSmoothedPaths(points: number[][]) {
+    if (!points.length) return { strokeD: '', areaD: '' }
+    let strokeD = `M ${points[0][0]} ${points[0][1]}`
+    for (let i = 0; i < points.length - 1; i++) {
+      const x0 = points[i][0]
+      const y0 = points[i][1]
+      const x1 = points[i + 1][0]
+      const y1 = points[i + 1][1]
+      const cx = (x0 + x1) / 2
+      const cy = (y0 + y1) / 2
+      strokeD += ` Q ${x0} ${y0} ${cx} ${cy}`
+    }
+    const last = points[points.length - 1]
+    strokeD += ` T ${last[0]} ${last[1]}`
+    const areaD = `${strokeD} L ${padding.left + plotWidth} ${padding.top + plotHeight} L ${padding.left} ${padding.top + plotHeight} Z`
+    return { strokeD, areaD }
+  }
+
   return (
     <Card className="chart-card">
       <ChartHeader title={config.title} subtitle={config.subtitle} />
@@ -150,28 +168,25 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
               </text>
             );
           })}
-          {config.series.map((series) => {
-            const points = series.values.map((value, index) =>
-              pointFor(value, index, series.values.length),
-            );
-            const path = points
-              .map(([x, y], index) => `${index === 0 ? "M" : "L"} ${x} ${y}`)
-              .join(" ");
-            return (
-              <g key={series.name}>
-                <path d={path} className={`line-path tone-${series.tone}`} />
-                {points.map(([x, y], index) => (
-                  <circle
-                    key={`${series.name}-${index}`}
-                    cx={x}
-                    cy={y}
-                    r="3"
-                    className={`line-dot tone-${series.tone}`}
-                  />
-                ))}
-              </g>
-            );
-          })}
+            {config.series.map((series) => {
+              const points = series.values.map((value, index) => pointFor(value, index, series.values.length))
+              const { strokeD, areaD } = buildSmoothedPaths(points)
+              return (
+                <g key={series.name}>
+                  <path d={areaD} className={`area-fill tone-${series.tone}`} />
+                  <path d={strokeD} className={`line-path tone-${series.tone}`} />
+                  {points.map(([x, y], index) => (
+                    <circle
+                      key={`${series.name}-${index}`}
+                      cx={x}
+                      cy={y}
+                      r="3"
+                      className={`line-dot tone-${series.tone}`}
+                    />
+                  ))}
+                </g>
+              )
+            })}
         </svg>
         <div style={{ width: 220 }}>
           <Legend
@@ -189,11 +204,15 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
 function PerformanceGroupedChart({ config }: { config: StackedBarConfig }) {
   // adapt stacked segments into grouped bars for side-by-side success/fail per product
   const grouped: GroupedBarsConfig = {
-    title: config.title ?? 'Job Success / Failure over Data Product',
+    title: config.title ?? "Job Success / Failure over Data Product",
     subtitle: config.subtitle,
     categories: config.categories.map((c) => ({
       label: c.label,
-      bars: c.segments.map((s) => ({ label: s.label, value: s.value, tone: s.tone })),
+      bars: c.segments.map((s) => ({
+        label: s.label,
+        value: s.value,
+        tone: s.tone,
+      })),
     })),
   };
   return <GroupedBars config={grouped} />;

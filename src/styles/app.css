@@ -493,6 +493,10 @@
   stroke-linejoin: round;
 }
 
+.area-fill {
+  opacity: 0.12;
+}
+
 .line-dot {
   stroke: #fff;
   stroke-width: 2;
