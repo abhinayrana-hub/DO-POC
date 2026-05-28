@@ -1,5 +1,5 @@
 import { CheckCircle2, LineChart } from "lucide-react";
-import RunTrendsCard from './RunTrendsCard'
+import RunTrendsCard from "./RunTrendsCard";
 import type {
   ChartTone,
   DashboardPageConfig,
@@ -25,7 +25,12 @@ export function ObservabilityCharts({
   if (page.id === "pipeline") {
     return (
       <section className="wireframe-grid pipeline-grid">
-        {page.visuals.trend && <RunTrendsCard />}
+        {page.visuals.trend && (
+          <Card className="chart-card">
+            <ChartHeader title={page.visuals.trend.title} subtitle={page.visuals.trend.subtitle} />
+            <RunTrendsCard compact />
+          </Card>
+        )}
         {page.visuals.performance && (
           <PerformanceGroupedChart config={page.visuals.performance} />
         )}
