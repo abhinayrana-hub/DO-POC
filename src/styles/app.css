@@ -421,6 +421,7 @@
 .pipeline-grid,
 .api-grid {
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
+  align-items: start;
 }
 
 .quality-grid {
@@ -441,6 +442,15 @@
 .chart-card {
   min-height: 320px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure Recharts responsive containers fill available card space in grids */
+.pipeline-grid .chart-card .recharts-responsive-container,
+.pipeline-grid .chart-card .recharts-wrapper {
+  height: 100% !important;
+  min-height: 220px;
 }
 
 .compact-chart-card {
