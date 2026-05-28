@@ -191,7 +191,7 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
                     key={`${series.name}-${index}`}
                     cx={x}
                     cy={y}
-                    r="3"
+                    r="4"
                     className={`line-dot tone-${series.tone}`}
                   />
                 ))}

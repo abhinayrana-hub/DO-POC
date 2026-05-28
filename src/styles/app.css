@@ -506,6 +506,21 @@
   min-height: 252px;
 }
 
+.trend-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.trend-row > svg {
+  flex: 0 0 480px;
+  max-width: 480px;
+}
+
+.trend-row > div {
+  flex: 0 0 220px;
+}
+
 .chart-grid-line {
   stroke: #e8ebef;
   stroke-width: 1;
@@ -708,14 +723,14 @@
 
 .grouped-bars {
   display: flex;
-  height: 190px;
+  height: auto; /* controlled per-layout via pipeline-grid selector */
   align-items: end;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .grouped-bar {
-  width: 16px;
+  width: 18px;
   min-height: 6px;
   border-radius: 3px 3px 0 0;
 }
