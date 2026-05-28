@@ -47,8 +47,8 @@ export function ObservabilityCharts({
         {page.visuals.stackedStatus && (
           <HorizontalStackedBars config={page.visuals.stackedStatus} />
         )}
-        {page.visuals.trend && <TrendLineChart config={page.visuals.trend} />}
         {page.visuals.matrix && <QualityMatrix config={page.visuals.matrix} />}
+        {page.visuals.trend && <TrendLineChart config={page.visuals.trend} />}
         {page.visuals.hierarchy && (
           <GroupedBars config={page.visuals.hierarchy} compact />
         )}
@@ -199,14 +199,25 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
             );
           })}
         </svg>
-        <div style={{ width: 220 }}>
-          <Legend
-            items={config.series.map((series) => ({
-              label: series.name,
-              tone: series.tone,
-            }))}
-          />
-        </div>
+        {config.legendBelow ? (
+          <div style={{ width: "100%" }}>
+            <Legend
+              items={config.series.map((series) => ({
+                label: series.name,
+                tone: series.tone,
+              }))}
+            />
+          </div>
+        ) : (
+          <div style={{ width: 220 }}>
+            <Legend
+              items={config.series.map((series) => ({
+                label: series.name,
+                tone: series.tone,
+              }))}
+            />
+          </div>
+        )}
       </div>
     </Card>
   );
@@ -376,7 +387,9 @@ function GroupedBars({
                   <span
                     key={`${category.label}-${bar.label}`}
                     className={`grouped-bar tone-${bar.tone}`}
-                    style={{ height: `${Math.max((bar.value / max) * 100, 6)}%` }}
+                    style={{
+                      height: `${Math.max((bar.value / max) * 100, 6)}%`,
+                    }}
                     title={`${bar.label}: ${bar.value}`}
                   />
                 ))}

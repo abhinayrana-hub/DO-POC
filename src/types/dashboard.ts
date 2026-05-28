@@ -39,6 +39,7 @@ export type TrendChartConfig = {
   labels: string[]
   yMax: number
   series: ChartSeries[]
+  legendBelow?: boolean
 }
 
 export type StackedSegment = {

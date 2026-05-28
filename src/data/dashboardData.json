@@ -42,8 +42,7 @@
         "value": "0",
         "delta": "Currently running",
         "status": "neutral"
-      },
-      
+      }
     ],
     "timeline": [
       { "label": "Ingestion", "value": 92, "status": "healthy" },
@@ -89,7 +88,7 @@
     ],
     "visuals": {
       "trend": {
-        "title": "Total JOB Runs Over Time",
+        "title": "Total Job Runs Over Time",
         "subtitle": "Last 30 days",
         "labels": [
           "Oct 27",
@@ -324,7 +323,7 @@
         ]
       },
       "trend": {
-        "title": "Overall Score Trend",
+        "title": "Overall Score Trend by Time",
         "subtitle": "Last 6 months",
         "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
         "yMax": 100,
@@ -332,12 +331,13 @@
           {
             "name": "Overall Score",
             "tone": "blue",
-            "values": [78, 80, 82, 81, 83, 82]
+            "values": [78, 60, 82, 12, 83, 82, 98]
           }
-        ]
+        ],
+        "legendBelow": true
       },
       "matrix": {
-        "title": "Data quality status by dimension",
+        "title": "Quality Score per Dimension",
         "subtitle": "Dimension x rule status",
         "columns": [
           "Accuracy",
@@ -349,7 +349,7 @@
         ],
         "rows": [
           {
-            "label": "Core Products",
+            "label": "UCC360",
             "cells": [
               { "value": "82.0%", "tone": "healthy" },
               { "value": "92.5%", "tone": "healthy" },
@@ -360,7 +360,7 @@
             ]
           },
           {
-            "label": "Identity",
+            "label": "UCC +BA",
             "cells": [
               { "value": "64.0%", "tone": "critical" },
               { "value": "90.0%", "tone": "healthy" },
@@ -371,7 +371,7 @@
             ]
           },
           {
-            "label": "Payments",
+            "label": "Entity",
             "cells": [
               { "value": "57.9%", "tone": "critical" },
               { "value": "94.8%", "tone": "healthy" },
@@ -382,7 +382,7 @@
             ]
           },
           {
-            "label": "Finance",
+            "label": "UCC + Entity",
             "cells": [
               { "value": "-", "tone": "neutral" },
               { "value": "91.9%", "tone": "healthy" },
@@ -393,12 +393,34 @@
             ]
           },
           {
-            "label": "Support",
+            "label": "iLien",
             "cells": [
               { "value": "-", "tone": "neutral" },
               { "value": "88.5%", "tone": "healthy" },
               { "value": "-", "tone": "neutral" },
               { "value": "92.0%", "tone": "healthy" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "-", "tone": "neutral" }
+            ]
+          },
+          {
+            "label": "UCC + iLien",
+            "cells": [
+              { "value": "-", "tone": "neutral" },
+              { "value": "91.9%", "tone": "healthy" },
+              { "value": "44.8%", "tone": "critical" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "84.5%", "tone": "healthy" },
+              { "value": "44.7%", "tone": "critical" }
+            ]
+          },
+          {
+            "label": "UCC + BA + Entity",
+            "cells": [
+              { "value": "69.0%", "tone": "blue" },
+              { "value": "80.0%", "tone": "teal" },
+              { "value": "-", "tone": "neutral" },
+              { "value": "75.0%", "tone": "healthy" },
               { "value": "-", "tone": "neutral" },
               { "value": "-", "tone": "neutral" }
             ]
@@ -463,44 +485,6 @@
               { "label": "Accuracy", "value": 69, "tone": "blue" },
               { "label": "Completeness", "value": 80, "tone": "teal" },
               { "label": "Consistency", "value": 75, "tone": "healthy" }
-            ]
-          }
-        ]
-      },
-      "dimensionBars": {
-        "title": "Count of data assets by dimension, rule type",
-        "subtitle": "Rule coverage by product",
-        "categories": [
-          {
-            "label": "Accuracy",
-            "bars": [
-              { "label": "UCC360", "value": 82, "tone": "blue" },
-              { "label": "UCC +BA", "value": 76, "tone": "blue" },
-              { "label": "Entity", "value": 64, "tone": "blue" }
-            ]
-          },
-          {
-            "label": "Completeness",
-            "bars": [
-              { "label": "UCC360", "value": 78, "tone": "teal" },
-              { "label": "UCC +BA", "value": 85, "tone": "teal" },
-              { "label": "Entity", "value": 91, "tone": "teal" }
-            ]
-          },
-          {
-            "label": "Conformity",
-            "bars": [
-              { "label": "UCC360", "value": 56, "tone": "critical" },
-              { "label": "UCC +BA", "value": 57, "tone": "critical" },
-              { "label": "Entity", "value": 58, "tone": "critical" }
-            ]
-          },
-          {
-            "label": "Consistency",
-            "bars": [
-              { "label": "UCC360", "value": 97, "tone": "healthy" },
-              { "label": "UCC +BA", "value": 91, "tone": "healthy" },
-              { "label": "Entity", "value": 88, "tone": "healthy" }
             ]
           }
         ]
