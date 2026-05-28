@@ -202,7 +202,7 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
           })}
             </svg>
           </div>
-          <div className="trend-legend">
+          <div className="chart-footer">
             <Legend
               items={config.series.map((series) => ({
                 label: series.name,
@@ -222,7 +222,7 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
             >
             </svg>
           </div>
-          <div className="trend-legend">
+          <div className="chart-footer">
             <Legend
               items={config.series.map((series) => ({
                 label: series.name,
@@ -412,13 +412,15 @@ function GroupedBars({
           ))}
         </div>
       </div>
-      <Legend
-        items={dedupeLegend(
-          config.categories.flatMap((category) =>
-            category.bars.map((bar) => ({ label: bar.label, tone: bar.tone })),
-          ),
-        )}
-      />
+      <div className="chart-footer">
+        <Legend
+          items={dedupeLegend(
+            config.categories.flatMap((category) =>
+              category.bars.map((bar) => ({ label: bar.label, tone: bar.tone })),
+            ),
+          )}
+        />
+      </div>
     </Card>
   );
 }
