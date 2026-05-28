@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from "react";
 import {
   CircleDot,
   Clock3,
@@ -8,9 +8,9 @@ import {
   MoreHorizontal,
   SlidersHorizontal,
   Zap,
-} from 'lucide-react'
-import { ObservabilityCharts } from '../components/charts/ObservabilityCharts'
-import type { DashboardPageConfig, Status } from '../types/dashboard'
+} from "lucide-react";
+import { ObservabilityCharts } from "../components/charts/ObservabilityCharts";
+import type { DashboardPageConfig, Status } from "../types/dashboard";
 import {
   Button,
   Card,
@@ -19,22 +19,24 @@ import {
   StatusPill,
   Tabs,
   Toolbar,
-} from '../components/ui'
+} from "../components/ui";
 
 const statusLabels: Record<Status, string> = {
-  healthy: 'Healthy',
-  warning: 'Warning',
-  critical: 'Critical',
-  neutral: 'Review',
-}
+  healthy: "Healthy",
+  warning: "Warning",
+  critical: "Critical",
+  neutral: "Review",
+};
 
 export function DashboardPage({ page }: { page: DashboardPageConfig }) {
-  const [activeTab, setActiveTab] = useState(page.tabs[0])
+  const [activeTab, setActiveTab] = useState(page.tabs[0]);
 
   const totalHealth = useMemo(() => {
-    const healthy = page.workItems.filter((item) => item.status === 'healthy').length
-    return Math.round((healthy / page.workItems.length) * 100)
-  }, [page])
+    const healthy = page.workItems.filter(
+      (item) => item.status === "healthy",
+    ).length;
+    return Math.round((healthy / page.workItems.length) * 100);
+  }, [page]);
 
   return (
     <div className="page">
@@ -48,7 +50,9 @@ export function DashboardPage({ page }: { page: DashboardPageConfig }) {
           <p>{page.summary}</p>
         </div>
         <div className="header-toolbar">
-          <Button variant="secondary" icon={<Download size={15} />}>Export</Button>
+          <Button variant="secondary" icon={<Download size={15} />}>
+            Export
+          </Button>
           <Button icon={<Zap size={15} />}>Create alert</Button>
         </div>
       </div>
@@ -77,14 +81,20 @@ export function DashboardPage({ page }: { page: DashboardPageConfig }) {
               <option value="7d">7 days</option>
             </select>
           </label>
-          <Button variant="secondary" icon={<Filter size={15} />}>Filter</Button>
+          <Button variant="secondary" icon={<Filter size={15} />}>
+            Filter
+          </Button>
           <IconButton label="More actions">
             <MoreHorizontal size={16} />
           </IconButton>
         </div>
       </Toolbar>
 
-      <ObservabilityCharts activeTab={activeTab} page={page} totalHealth={totalHealth} />
+      <ObservabilityCharts
+        activeTab={activeTab}
+        page={page}
+        totalHealth={totalHealth}
+      />
 
       <Card className="table-card">
         <div className="panel-header">
@@ -92,7 +102,9 @@ export function DashboardPage({ page }: { page: DashboardPageConfig }) {
             <h2>Operational Work Queue</h2>
             <p>Owner, status, and latest measurement for monitored assets.</p>
           </div>
-          <Button variant="secondary" icon={<SlidersHorizontal size={15} />}>Columns</Button>
+          <Button variant="secondary" icon={<SlidersHorizontal size={15} />}>
+            Columns
+          </Button>
         </div>
         <div className="table-wrap">
           <table>
@@ -110,12 +122,18 @@ export function DashboardPage({ page }: { page: DashboardPageConfig }) {
                 <tr key={item.name}>
                   <td>
                     <div className="resource-cell">
-                      <span className="resource-icon"><LayoutDashboard size={15} /></span>
+                      <span className="resource-icon">
+                        <LayoutDashboard size={15} />
+                      </span>
                       <span>{item.name}</span>
                     </div>
                   </td>
                   <td>{item.owner}</td>
-                  <td><StatusPill status={item.status}>{statusLabels[item.status]}</StatusPill></td>
+                  <td>
+                    <StatusPill status={item.status}>
+                      {statusLabels[item.status]}
+                    </StatusPill>
+                  </td>
                   <td>{item.metric}</td>
                   <td>
                     <span className="time-cell">
@@ -130,5 +148,5 @@ export function DashboardPage({ page }: { page: DashboardPageConfig }) {
         </div>
       </Card>
     </div>
-  )
+  );
 }
