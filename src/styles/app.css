@@ -443,6 +443,18 @@
   overflow: hidden;
 }
 
+/* Ensure pipeline chart cards are visually consistent height */
+.pipeline-grid .chart-card {
+  min-height: 360px;
+}
+
+/* Make grouped/bar chart bodies use the same inner plot area height as Recharts area chart */
+.pipeline-grid .chart-card .grouped-bar-chart {
+  min-height: 260px;
+  padding-top: 18px;
+  align-items: end;
+}
+
 /* Ensure chart-card header does not consume flexible space and chart body fills remaining area */
 /* (restored to simpler layout; header and body sizing handled by card padding) */
 
