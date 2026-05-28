@@ -727,6 +727,7 @@
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-top: 12px;
 }
 
 .lineage-card {

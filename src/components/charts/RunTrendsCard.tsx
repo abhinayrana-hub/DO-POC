@@ -75,7 +75,7 @@ export default function RunTrendsCard({
       <ResponsiveContainer>
         <AreaChart
           data={runTrends}
-          margin={{ top: 8, right: 20, left: 0, bottom: 0 }}
+          margin={{ top: 8, right: 20, left: 0, bottom: 36 }}
         >
           <defs>
             <linearGradient id="gradientSuccess" x1="0" y1="0" x2="0" y2="1">
@@ -97,6 +97,8 @@ export default function RunTrendsCard({
             dataKey="date"
             tick={{ fontSize: 12, fill: "var(--color-muted)" }}
             padding={{ left: 10, right: 10 }}
+            tickLine={false}
+            dy={10}
           />
           <YAxis tick={{ fontSize: 12, fill: "var(--color-muted)" }} />
           <Tooltip content={<CustomTooltip />} />
@@ -127,7 +129,7 @@ export default function RunTrendsCard({
             animationDuration={800}
           />
         </AreaChart>
-        </ResponsiveContainer>
+      </ResponsiveContainer>
     </div>
   );
 
