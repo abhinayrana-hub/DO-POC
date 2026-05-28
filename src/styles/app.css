@@ -512,13 +512,20 @@
   gap: 20px;
 }
 
-.trend-row > svg {
-  flex: 0 0 480px;
-  max-width: 480px;
+.trend-row > .trend-chart {
+  flex: 1 1 480px;
+  min-width: 320px;
+  max-width: 680px;
 }
 
-.trend-row > div {
+.trend-row > .trend-legend {
   flex: 0 0 220px;
+}
+
+.trend-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .chart-grid-line {
@@ -723,7 +730,7 @@
 
 .grouped-bars {
   display: flex;
-  height: auto; /* controlled per-layout via pipeline-grid selector */
+  height: 190px; /* default for quality/hierarchy charts */
   align-items: end;
   justify-content: center;
   gap: 8px;

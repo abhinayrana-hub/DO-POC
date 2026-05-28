@@ -127,13 +127,15 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
   return (
     <Card className="chart-card">
       <ChartHeader title={config.title} subtitle={config.subtitle} />
-      <div className="trend-row">
-        <svg
-          className="line-chart-svg"
-          viewBox={`0 0 ${width} ${height}`}
-          role="img"
-          aria-label={config.title}
-        >
+      {config.legendBelow ? (
+        <div className="trend-column">
+          <div className="trend-chart">
+            <svg
+              className="line-chart-svg"
+              viewBox={`0 0 ${width} ${height}`}
+              role="img"
+              aria-label={config.title}
+            >
           {[0, 0.25, 0.5, 0.75, 1].map((step) => {
             const y = padding.top + plotHeight - step * plotHeight;
             return (
@@ -198,9 +200,9 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
               </g>
             );
           })}
-        </svg>
-        {config.legendBelow ? (
-          <div style={{ width: "100%" }}>
+            </svg>
+          </div>
+          <div className="trend-legend">
             <Legend
               items={config.series.map((series) => ({
                 label: series.name,
@@ -208,8 +210,19 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
               }))}
             />
           </div>
-        ) : (
-          <div style={{ width: 220 }}>
+        </div>
+      ) : (
+        <div className="trend-row">
+          <div className="trend-chart">
+            <svg
+              className="line-chart-svg"
+              viewBox={`0 0 ${width} ${height}`}
+              role="img"
+              aria-label={config.title}
+            >
+            </svg>
+          </div>
+          <div className="trend-legend">
             <Legend
               items={config.series.map((series) => ({
                 label: series.name,
@@ -217,8 +230,8 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
               }))}
             />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </Card>
   );
 }
