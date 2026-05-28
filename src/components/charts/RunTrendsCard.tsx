@@ -75,7 +75,7 @@ export default function RunTrendsCard({
       <ResponsiveContainer>
         <AreaChart
           data={runTrends}
-          margin={{ top: 8, right: 20, left: 0, bottom: 36 }}
+          margin={{ top: 8, right: 20, left: 42, bottom: 36 }}
         >
           <defs>
             <linearGradient id="gradientSuccess" x1="0" y1="0" x2="0" y2="1">
