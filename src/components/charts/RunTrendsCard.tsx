@@ -127,8 +127,7 @@ export default function RunTrendsCard({
             animationDuration={800}
           />
         </AreaChart>
-      </ResponsiveContainer>
-      </ResponsiveContainer>
+        </ResponsiveContainer>
     </div>
   );
 
