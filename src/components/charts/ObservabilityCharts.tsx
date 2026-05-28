@@ -27,7 +27,10 @@ export function ObservabilityCharts({
       <section className="wireframe-grid pipeline-grid">
         {page.visuals.trend && (
           <Card className="chart-card">
-            <ChartHeader title={page.visuals.trend.title} subtitle={page.visuals.trend.subtitle} />
+            <ChartHeader
+              title={page.visuals.trend.title}
+              subtitle={page.visuals.trend.subtitle}
+            />
             <RunTrendsCard compact />
           </Card>
         )}
@@ -364,22 +367,24 @@ function GroupedBars({
   return (
     <Card className={`chart-card ${compact ? "compact-chart-card" : ""}`}>
       <ChartHeader title={config.title} subtitle={config.subtitle} />
-      <div className="grouped-bar-chart">
-        {config.categories.map((category) => (
-          <div className="grouped-category" key={category.label}>
-            <div className="grouped-bars">
-              {category.bars.map((bar) => (
-                <span
-                  key={`${category.label}-${bar.label}`}
-                  className={`grouped-bar tone-${bar.tone}`}
-                  style={{ height: `${Math.max((bar.value / max) * 100, 6)}%` }}
-                  title={`${bar.label}: ${bar.value}`}
-                />
-              ))}
+      <div className="chart-plot">
+        <div className="grouped-bar-chart">
+          {config.categories.map((category) => (
+            <div className="grouped-category" key={category.label}>
+              <div className="grouped-bars">
+                {category.bars.map((bar) => (
+                  <span
+                    key={`${category.label}-${bar.label}`}
+                    className={`grouped-bar tone-${bar.tone}`}
+                    style={{ height: `${Math.max((bar.value / max) * 100, 6)}%` }}
+                    title={`${bar.label}: ${bar.value}`}
+                  />
+                ))}
+              </div>
+              <span title={category.label}>{category.label}</span>
             </div>
-            <span title={category.label}>{category.label}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <Legend
         items={dedupeLegend(
