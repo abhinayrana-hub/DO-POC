@@ -439,7 +439,12 @@
 }
 
 .chart-card {
-  min-height: 320px;
+  --chart-plot-height: 300px;
+  --chart-axis-left: 64px;
+  --chart-axis-right: 22px;
+  --chart-axis-top: 24px;
+  --chart-axis-bottom: 44px;
+  min-height: 360px;
   overflow: hidden;
 }
 
@@ -448,26 +453,10 @@
   min-height: 360px;
 }
 
-/* Make grouped/bar chart bodies use the same inner plot area height as Recharts area chart */
-.pipeline-grid .chart-card .grouped-bar-chart {
-  min-height: 320px;
-  padding-top: 8px; /* match AreaChart margin.top */
-  align-items: end;
-}
-.pipeline-grid .chart-card .grouped-bar-chart {
-  /* align inner plot start with area chart's left gutter */
-  padding-left: 42px;
-  padding-right: 20px;
-}
-
 /* Shared inner plot height used by Recharts and grouped bars for parity */
 .chart-plot {
   width: 100%;
-  height: 320px;
-}
-.pipeline-grid .chart-card .grouped-bar-chart .grouped-bars {
-  height: 276px; /* chart-plot (320) - top(8) - bottom(36) = 276 */
-  justify-content: space-between;
+  height: var(--chart-plot-height);
 }
 
 /* Ensure chart-card header does not consume flexible space and chart body fills remaining area */
@@ -503,19 +492,20 @@
 .line-chart-svg {
   display: block;
   width: 100%;
-  min-height: 252px;
+  height: var(--chart-plot-height);
+  min-height: 0;
 }
 
 .trend-row {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 20px;
 }
 
 .trend-row > .trend-chart {
   flex: 1 1 480px;
   min-width: 320px;
-  max-width: 680px;
+  max-width: none;
 }
 
 .trend-row > .trend-legend {
@@ -523,9 +513,9 @@
 }
 
 .trend-column {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  min-height: 0;
+  grid-template-rows: var(--chart-plot-height) 34px;
 }
 
 .chart-grid-line {
@@ -540,13 +530,14 @@
 
 .line-path {
   fill: none;
-  stroke-width: 3;
+  stroke-width: 3.2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  filter: drop-shadow(0 1px 1px rgba(44, 44, 44, 0.08));
 }
 
 .area-fill {
-  opacity: 0.12;
+  opacity: 0.08;
 }
 
 .line-dot {
@@ -559,16 +550,25 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-3);
-  margin-top: var(--space-2);
+  margin-top: 0;
   color: var(--color-secondary);
   font-size: 12px;
 }
 
 .chart-footer {
-  padding-left: 42px; /* align with chart plot gutter */
-  padding-right: 20px;
   display: flex;
-  justify-content: center; /* center legend within plot area */
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding-right: var(--chart-axis-right);
+  padding-left: var(--chart-axis-left);
+}
+
+.chart-card > .chart-legend {
+  min-height: 34px;
+  align-items: center;
+  padding-right: var(--chart-axis-right);
+  padding-left: var(--chart-axis-left);
 }
 
 .chart-legend span {
@@ -720,24 +720,28 @@
 .grouped-bar-chart {
   display: flex;
   align-items: end;
-  min-height: 225px;
+  height: var(--chart-plot-height);
+  min-height: 0;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-2) 0;
+  padding:
+    var(--chart-axis-top) var(--chart-axis-right) var(--chart-axis-bottom)
+    var(--chart-axis-left);
   border-bottom: 1px solid var(--color-border);
 }
 
 .grouped-category {
   display: grid;
+  position: relative;
   flex: 1 1 0;
   min-width: 0;
-  height: 320px;
+  height: calc(var(--chart-plot-height) - var(--chart-axis-top) - var(--chart-axis-bottom));
   align-items: end;
-  gap: 8px;
+  gap: 0;
 }
 
 .grouped-bars {
   display: flex;
-  height: 190px; /* default for quality/hierarchy charts */
+  height: 100%;
   align-items: end;
   justify-content: center;
   gap: 8px;
@@ -750,13 +754,17 @@
 }
 
 .grouped-category > span {
+  position: absolute;
+  right: -12px;
+  bottom: calc(-1 * var(--chart-axis-bottom) + 12px);
+  left: -12px;
   overflow: hidden;
   color: var(--color-muted);
   font-size: 10px;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-top: 12px;
+  line-height: 14px;
 }
 
 .lineage-card {
@@ -1055,6 +1063,228 @@
 
 .lineage-node.tone-critical {
   fill: #fff3f1;
+}
+
+.trend-row .chart-footer {
+  flex: 0 0 128px;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.trend-row .chart-legend {
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.chart-axis-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.time-bar-layout {
+  display: grid;
+  grid-template-columns: var(--chart-axis-left) minmax(0, 1fr);
+  gap: 0;
+  height: var(--chart-plot-height);
+  min-height: 0;
+}
+
+.time-bar-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--chart-axis-top) 8px var(--chart-axis-bottom) 0;
+  color: var(--color-muted);
+  font-size: 11px;
+  text-align: right;
+}
+
+.time-bar-plot {
+  position: relative;
+  display: flex;
+  align-items: end;
+  gap: var(--space-3);
+  min-width: 0;
+  min-height: 0;
+  height: var(--chart-plot-height);
+  padding:
+    var(--chart-axis-top) var(--chart-axis-right) var(--chart-axis-bottom) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.time-bar-grid {
+  position: absolute;
+  inset:
+    var(--chart-axis-top) var(--chart-axis-right) var(--chart-axis-bottom)
+    0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, #e7edf5 1px, transparent 1px) 0 0 / 100% 25%;
+}
+
+.time-bar-column {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 1 1 0;
+  min-width: 38px;
+  height: calc(var(--chart-plot-height) - var(--chart-axis-top) - var(--chart-axis-bottom));
+  align-items: end;
+}
+
+.time-bar {
+  display: block;
+  width: min(34px, 70%);
+  min-height: 6px;
+  justify-self: center;
+  border-radius: 4px 4px 0 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.time-bar-column small {
+  position: absolute;
+  right: -16px;
+  bottom: calc(-1 * var(--chart-axis-bottom) + 12px);
+  left: -16px;
+  overflow: hidden;
+  color: var(--color-muted);
+  font-size: 10px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Refined chart palette: readable, enterprise-safe, and less harsh than pure red/green. */
+.tone-healthy,
+.chart-legend i.tone-healthy,
+.line-dot.tone-healthy,
+.grouped-bar.tone-healthy,
+.time-bar.tone-healthy,
+.horizontal-stack-segment.tone-healthy,
+.stacked-column-segment.tone-healthy,
+.matrix-cell.tone-healthy {
+  fill: #22a06b;
+  stroke: #22a06b;
+  background: #22a06b;
+}
+
+.tone-warning,
+.chart-legend i.tone-warning,
+.line-dot.tone-warning,
+.grouped-bar.tone-warning,
+.time-bar.tone-warning,
+.horizontal-stack-segment.tone-warning,
+.stacked-column-segment.tone-warning,
+.matrix-cell.tone-warning {
+  fill: #f2a541;
+  stroke: #f2a541;
+  background: #f2a541;
+}
+
+.tone-critical,
+.chart-legend i.tone-critical,
+.line-dot.tone-critical,
+.grouped-bar.tone-critical,
+.time-bar.tone-critical,
+.horizontal-stack-segment.tone-critical,
+.stacked-column-segment.tone-critical,
+.matrix-cell.tone-critical {
+  fill: #e05a5f;
+  stroke: #e05a5f;
+  background: #e05a5f;
+}
+
+.tone-blue,
+.chart-legend i.tone-blue,
+.line-dot.tone-blue,
+.grouped-bar.tone-blue,
+.time-bar.tone-blue,
+.horizontal-stack-segment.tone-blue,
+.stacked-column-segment.tone-blue,
+.matrix-cell.tone-blue {
+  fill: #2f7de1;
+  stroke: #2f7de1;
+  background: #2f7de1;
+}
+
+.tone-purple,
+.chart-legend i.tone-purple,
+.line-dot.tone-purple,
+.grouped-bar.tone-purple,
+.time-bar.tone-purple,
+.horizontal-stack-segment.tone-purple,
+.stacked-column-segment.tone-purple,
+.matrix-cell.tone-purple {
+  fill: #7357d8;
+  stroke: #7357d8;
+  background: #7357d8;
+}
+
+.tone-orange,
+.chart-legend i.tone-orange,
+.line-dot.tone-orange,
+.grouped-bar.tone-orange,
+.time-bar.tone-orange,
+.horizontal-stack-segment.tone-orange,
+.stacked-column-segment.tone-orange,
+.matrix-cell.tone-orange {
+  fill: #e8792c;
+  stroke: #e8792c;
+  background: #e8792c;
+}
+
+.tone-teal,
+.chart-legend i.tone-teal,
+.line-dot.tone-teal,
+.grouped-bar.tone-teal,
+.time-bar.tone-teal,
+.horizontal-stack-segment.tone-teal,
+.stacked-column-segment.tone-teal,
+.matrix-cell.tone-teal {
+  fill: #19a0aa;
+  stroke: #19a0aa;
+  background: #19a0aa;
+}
+
+.line-path.tone-healthy,
+.line-path.tone-warning,
+.line-path.tone-critical,
+.line-path.tone-blue,
+.line-path.tone-purple,
+.line-path.tone-orange,
+.line-path.tone-teal {
+  fill: none;
+}
+
+.area-fill.tone-healthy {
+  fill: #22a06b;
+}
+
+.area-fill.tone-warning {
+  fill: #f2a541;
+}
+
+.area-fill.tone-critical {
+  fill: #e05a5f;
+}
+
+.area-fill.tone-blue {
+  fill: #2f7de1;
+}
+
+.area-fill.tone-purple {
+  fill: #7357d8;
+}
+
+.area-fill.tone-orange {
+  fill: #e8792c;
+}
+
+.area-fill.tone-teal {
+  fill: #19a0aa;
 }
 
 .panel-header {

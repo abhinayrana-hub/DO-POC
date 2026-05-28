@@ -75,6 +75,16 @@ export function ObservabilityCharts({
         {page.visuals.latency && (
           <TrendLineChart config={page.visuals.latency} />
         )}
+        {page.visuals.latencyOverTime && (
+          <TimeBarChart
+            config={page.visuals.latencyOverTime}
+            yMax={600}
+            ySuffix="ms"
+          />
+        )}
+        {page.visuals.uptimeOverTime && (
+          <TrendLineChart config={page.visuals.uptimeOverTime} />
+        )}
         <SignalBars
           activeTab={activeTab}
           page={page}
@@ -94,8 +104,8 @@ export function ObservabilityCharts({
 
 function TrendLineChart({ config }: { config: TrendChartConfig }) {
   const width = 640;
-  const height = 260;
-  const padding = { top: 24, right: 24, bottom: 38, left: 42 };
+  const height = 300;
+  const padding = { top: 24, right: 22, bottom: 44, left: 64 };
   const plotWidth = width - padding.left - padding.right;
   const plotHeight = height - padding.top - padding.bottom;
 
@@ -124,84 +134,100 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
     return { strokeD, areaD };
   }
 
+  const chartSvg = (
+    <svg
+      className="line-chart-svg"
+      viewBox={`0 0 ${width} ${height}`}
+      role="img"
+      aria-label={config.title}
+    >
+      {[0, 0.25, 0.5, 0.75, 1].map((step) => {
+        const y = padding.top + plotHeight - step * plotHeight;
+        const value = Math.round(config.yMax * step);
+        return (
+          <g key={step}>
+            <line
+              x1={padding.left}
+              x2={width - padding.right}
+              y1={y}
+              y2={y}
+              className="chart-grid-line"
+            />
+            <text
+              x={padding.left - 10}
+              y={y + 4}
+              className="chart-axis-text"
+              textAnchor="end"
+            >
+              {value}{config.ySuffix ?? ""}
+            </text>
+          </g>
+        );
+      })}
+      {config.labels.map((label, index) => {
+        if (
+          index % Math.ceil(config.labels.length / 5) !== 0 &&
+          index !== config.labels.length - 1
+        ) {
+          return null;
+        }
+        const x =
+          padding.left + (index / (config.labels.length - 1)) * plotWidth;
+        return (
+          <text
+            key={label}
+            x={x}
+            y={height - 12}
+            className="chart-axis-text"
+            textAnchor="middle"
+          >
+            {label}
+          </text>
+        );
+      })}
+      {config.yAxisLabel && (
+        <text
+          x={12}
+          y={padding.top + plotHeight / 2}
+          className="chart-axis-text chart-axis-label"
+          textAnchor="middle"
+          transform={`rotate(-90 12 ${padding.top + plotHeight / 2})`}
+        >
+          {config.yAxisLabel}
+        </text>
+      )}
+      {config.series.map((series) => {
+        const points = series.values.map((value, index) =>
+          pointFor(value, index, series.values.length),
+        );
+        const { strokeD, areaD } = buildSmoothedPaths(points);
+        return (
+          <g key={series.name}>
+            {config.legendBelow && config.series.length === 1 && (
+              <path d={areaD} className={`area-fill tone-${series.tone}`} />
+            )}
+            <path d={strokeD} className={`line-path tone-${series.tone}`} />
+            {points.map(([x, y], index) => (
+              <circle
+                key={`${series.name}-${index}`}
+                cx={x}
+                cy={y}
+                r="3.5"
+                className={`line-dot tone-${series.tone}`}
+              />
+            ))}
+          </g>
+        );
+      })}
+    </svg>
+  );
+
   return (
     <Card className="chart-card">
       <ChartHeader title={config.title} subtitle={config.subtitle} />
       {config.legendBelow ? (
         <div className="trend-column">
-          <div className="trend-chart">
-            <svg
-              className="line-chart-svg"
-              viewBox={`0 0 ${width} ${height}`}
-              role="img"
-              aria-label={config.title}
-            >
-          {[0, 0.25, 0.5, 0.75, 1].map((step) => {
-            const y = padding.top + plotHeight - step * plotHeight;
-            return (
-              <g key={step}>
-                <line
-                  x1={padding.left}
-                  x2={width - padding.right}
-                  y1={y}
-                  y2={y}
-                  className="chart-grid-line"
-                />
-                <text
-                  x={padding.left - 10}
-                  y={y + 4}
-                  className="chart-axis-text"
-                  textAnchor="end"
-                >
-                  {Math.round(config.yMax * step)}
-                </text>
-              </g>
-            );
-          })}
-          {config.labels.map((label, index) => {
-            if (
-              index % Math.ceil(config.labels.length / 5) !== 0 &&
-              index !== config.labels.length - 1
-            ) {
-              return null;
-            }
-            const x =
-              padding.left + (index / (config.labels.length - 1)) * plotWidth;
-            return (
-              <text
-                key={label}
-                x={x}
-                y={height - 12}
-                className="chart-axis-text"
-                textAnchor="middle"
-              >
-                {label}
-              </text>
-            );
-          })}
-          {config.series.map((series) => {
-            const points = series.values.map((value, index) =>
-              pointFor(value, index, series.values.length),
-            );
-            const { strokeD, areaD } = buildSmoothedPaths(points);
-            return (
-              <g key={series.name}>
-                <path d={areaD} className={`area-fill tone-${series.tone}`} />
-                <path d={strokeD} className={`line-path tone-${series.tone}`} />
-                {points.map(([x, y], index) => (
-                  <circle
-                    key={`${series.name}-${index}`}
-                    cx={x}
-                    cy={y}
-                    r="4"
-                    className={`line-dot tone-${series.tone}`}
-                  />
-                ))}
-              </g>
-            );
-          })}
-            </svg>
-          </div>
+          <div className="chart-plot trend-chart">{chartSvg}</div>
           <div className="chart-footer">
             <Legend
               items={config.series.map((series) => ({
@@ -213,15 +239,7 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
         </div>
       ) : (
         <div className="trend-row">
-          <div className="trend-chart">
-            <svg
-              className="line-chart-svg"
-              viewBox={`0 0 ${width} ${height}`}
-              role="img"
-              aria-label={config.title}
-            >
-            </svg>
-          </div>
+          <div className="chart-plot trend-chart">{chartSvg}</div>
           <div className="chart-footer">
             <Legend
               items={config.series.map((series) => ({
@@ -232,6 +250,46 @@ function TrendLineChart({ config }: { config: TrendChartConfig }) {
           </div>
         </div>
       )}
+    </Card>
+  );
+}
+
+function TimeBarChart({
+  config,
+  yMax,
+  ySuffix,
+}: {
+  config: GroupedBarsConfig;
+  yMax: number;
+  ySuffix: string;
+}) {
+  return (
+    <Card className="chart-card">
+      <ChartHeader title={config.title} subtitle={config.subtitle} />
+      <div className="time-bar-layout">
+        <div className="time-bar-axis">
+          {[1, 0.75, 0.5, 0.25, 0].map((step) => (
+            <span key={step}>{Math.round(yMax * step)}{ySuffix}</span>
+          ))}
+        </div>
+        <div className="time-bar-plot">
+          <div className="time-bar-grid" />
+          {config.categories.map((category) => {
+            const bar = category.bars[0];
+            return (
+              <div className="time-bar-column" key={category.label}>
+                <span
+                  className={`time-bar tone-${bar.tone}`}
+                  style={{ height: `${Math.max((bar.value / yMax) * 100, 4)}%` }}
+                  title={`${category.label}: ${bar.value}${ySuffix}`}
+                />
+                <small>{category.label}</small>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <Legend items={[{ label: "Latency", tone: "blue" }]} />
     </Card>
   );
 }
@@ -251,51 +309,6 @@ function PerformanceGroupedChart({ config }: { config: StackedBarConfig }) {
     })),
   };
   return <GroupedBars config={grouped} />;
-}
-
-function StackedColumnChart({ config }: { config: StackedBarConfig }) {
-  const max = Math.max(
-    ...config.categories.map((category) =>
-      sum(category.segments.map((segment) => segment.value)),
-    ),
-  );
-
-  return (
-    <Card className="chart-card">
-      <ChartHeader title={config.title} subtitle={config.subtitle} />
-      <div className="stacked-column-chart" aria-label={config.title}>
-        {config.categories.map((category) => {
-          const total = sum(category.segments.map((segment) => segment.value));
-          return (
-            <div className="stacked-column" key={category.label}>
-              <div
-                className="stacked-column-stack"
-                style={{ height: `${Math.max((total / max) * 100, 8)}%` }}
-              >
-                {category.segments.map((segment) => (
-                  <span
-                    key={`${category.label}-${segment.label}`}
-                    className={`stacked-column-segment tone-${segment.tone}`}
-                    style={{ height: `${(segment.value / total) * 100}%` }}
-                    title={`${category.label} ${segment.label}: ${segment.value}`}
-                  />
-                ))}
-              </div>
-              <span title={category.label}>{category.label}</span>
-            </div>
-          );
-        })}
-      </div>
-      <Legend
-        items={
-          config.categories[0]?.segments.map((segment) => ({
-            label: segment.label,
-            tone: segment.tone,
-          })) ?? []
-        }
-      />
-    </Card>
-  );
 }
 
 function HorizontalStackedBars({ config }: { config: StackedBarConfig }) {
@@ -416,7 +429,10 @@ function GroupedBars({
         <Legend
           items={dedupeLegend(
             config.categories.flatMap((category) =>
-              category.bars.map((bar) => ({ label: bar.label, tone: bar.tone })),
+              category.bars.map((bar) => ({
+                label: bar.label,
+                tone: bar.tone,
+              })),
             ),
           )}
         />

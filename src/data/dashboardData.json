@@ -740,7 +740,7 @@
     ],
     "visuals": {
       "traffic": {
-        "title": "Request volume by service",
+        "title": "Request volume per Data Product",
         "subtitle": "Grouped status code classes",
         "categories": [
           {
@@ -804,6 +804,9 @@
           "Jun 28"
         ],
         "yMax": 900,
+        "yAxisLabel": "Response time",
+        "ySuffix": "ms",
+        "legendBelow": true,
         "series": [
           {
             "name": "P50",
@@ -824,6 +827,74 @@
             "name": "Downstream",
             "tone": "purple",
             "values": [410, 385, 450, 420, 480, 445, 460, 500]
+          }
+        ]
+      },
+      "latencyOverTime": {
+        "title": "Latency Over Time",
+        "subtitle": "Average latency by interval",
+        "categories": [
+          {
+            "label": "09:00",
+            "bars": [{ "label": "Latency", "value": 220, "tone": "blue" }]
+          },
+          {
+            "label": "10:00",
+            "bars": [{ "label": "Latency", "value": 310, "tone": "teal" }]
+          },
+          {
+            "label": "11:00",
+            "bars": [{ "label": "Latency", "value": 390, "tone": "orange" }]
+          },
+          {
+            "label": "12:00",
+            "bars": [{ "label": "Latency", "value": 265, "tone": "blue" }]
+          },
+          {
+            "label": "13:00",
+            "bars": [{ "label": "Latency", "value": 430, "tone": "warning" }]
+          },
+          {
+            "label": "14:00",
+            "bars": [{ "label": "Latency", "value": 340, "tone": "teal" }]
+          },
+          {
+            "label": "15:00",
+            "bars": [{ "label": "Latency", "value": 510, "tone": "critical" }]
+          },
+          {
+            "label": "16:00",
+            "bars": [{ "label": "Latency", "value": 295, "tone": "blue" }]
+          }
+        ]
+      },
+      "uptimeOverTime": {
+        "title": "Uptime Over Time",
+        "subtitle": "Availability percentage by interval",
+        "labels": [
+          "09:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00"
+        ],
+        "yMax": 100,
+        "yAxisLabel": "Uptime",
+        "ySuffix": "%",
+        "legendBelow": true,
+        "series": [
+          {
+            "name": "Uptime",
+            "tone": "healthy",
+            "values": [99.6, 97.8, 80.9, 96.4, 99.2, 95.7, 98.4, 97.1]
+          },
+          {
+            "name": "SLO target",
+            "tone": "purple",
+            "values": [99, 99, 99, 99, 99, 99, 99, 99]
           }
         ]
       }

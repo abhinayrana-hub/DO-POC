@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -9,6 +8,17 @@ import {
   Tooltip,
 } from "recharts";
 import runTrends from "../../data/runTrendsData";
+
+type TooltipPayload = {
+  dataKey?: string;
+  value?: string | number;
+};
+
+type CustomTooltipProps = {
+  active?: boolean;
+  payload?: TooltipPayload[];
+  label?: string | number;
+};
 
 function Kpi({
   label,
@@ -30,10 +40,10 @@ function Kpi({
   );
 }
 
-function CustomTooltip({ active, payload, label }: any) {
+function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
   if (!active || !payload || !payload.length) return null;
-  const success = payload.find((p: any) => p.dataKey === "success");
-  const failed = payload.find((p: any) => p.dataKey === "failed");
+  const success = payload.find((p) => p.dataKey === "success");
+  const failed = payload.find((p) => p.dataKey === "failed");
   return (
     <div className="bg-white dark:bg-slate-800 border rounded-md p-2 text-sm shadow">
       <div className="text-xs text-slate-500">{label}</div>
@@ -75,7 +85,7 @@ export default function RunTrendsCard({
       <ResponsiveContainer>
         <AreaChart
           data={runTrends}
-          margin={{ top: 8, right: 20, left: 42, bottom: 36 }}
+          margin={{ top: 24, right: 22, left: 64, bottom: 44 }}
         >
           <defs>
             <linearGradient id="gradientSuccess" x1="0" y1="0" x2="0" y2="1">
