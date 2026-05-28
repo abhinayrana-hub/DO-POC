@@ -421,7 +421,6 @@
 .pipeline-grid,
 .api-grid {
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
-  align-items: start;
 }
 
 .quality-grid {
@@ -442,42 +441,10 @@
 .chart-card {
   min-height: 320px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Ensure Recharts responsive containers fill available card space in grids */
-.pipeline-grid .chart-card .recharts-responsive-container,
-.pipeline-grid .chart-card .recharts-wrapper {
-  height: 100% !important;
-  min-height: 220px;
 }
 
 /* Ensure chart-card header does not consume flexible space and chart body fills remaining area */
-.chart-card > .chart-header {
-  flex: 0 0 auto;
-}
-.chart-card > *:not(.chart-header) {
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-/* Make grouped/bar chart bodies stretch like Recharts containers */
-.chart-card .grouped-bar-chart,
-.chart-card .stacked-column-chart,
-.chart-card .horizontal-stack-chart,
-.chart-card .matrix-scroll,
-.chart-card .lineage-content {
-  flex: 1 1 0;
-  min-height: 0;
-}
-
-/* Slightly larger default pipeline chart height for visual parity */
-.pipeline-grid .chart-card {
-  min-height: 360px;
-}
+/* (restored to simpler layout; header and body sizing handled by card padding) */
 
 .compact-chart-card {
   min-height: 300px;
